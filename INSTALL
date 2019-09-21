@@ -1,4 +1,18 @@
-Install termux!
+#Method 1 using pydroid
+1) Install (from f-droid or google play store):
+- pydroid 
+- termux 
+
+2) Open pydroid (once into it):
+ open pip and install the followings libraries: 
+- Pillow
+- Django
+
+3) Open termux (once on it run):
 pkg install git
 git clone ... && cd miescuela-koala
 ./build
+
+4) Return to pydroid and open a python interpreter:
+./pydroid-migrate
+./run

@@ -1,0 +1,4 @@
+cd lms && ./manage.py migrate
+./manage.py loaddata ./fixtures/sample-fr.json
+#./manage.py runserver
+

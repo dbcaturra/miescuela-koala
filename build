@@ -1,6 +1,5 @@
-pkg install python
-git clone https://gitlab.com/koala-lms/lms.git && cd lms
-pip install -r requirements.txt
-./manage.py migrate
-./manage.py loaddata ./fixtures/sample-fr.json
-./manage.py runserver
+#pkg install python
+git -C ~/storage/shared/lms clone https://gitlab.com/koala-lms/lms.git 
+#cd lms
+#pip install -r requirements.txt
+termux-setup-storage
