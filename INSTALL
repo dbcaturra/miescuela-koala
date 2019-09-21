@@ -1,0 +1,4 @@
+Install termux!
+pkg install git
+git clone ... && cd miescuela-koala
+./build
