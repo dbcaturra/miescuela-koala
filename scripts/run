@@ -1,0 +1,1 @@
+cd lms && ./manage.py runserver

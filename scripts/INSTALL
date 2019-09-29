@@ -1,0 +1,28 @@
+#Method 1 using pydroid
+1) Install (from f-droid or google play store):
+- pydroid 
+- termux 
+
+2) Open pydroid (once into it):
+ open pip and install the followings libraries: 
+- Pillow
+- Django
+
+3) Open termux (once on it run):
+pkg install git
+git clone ... && cd miescuela-koala
+./build
+
+4) Return to pydroid and open a python interpreter:
+./pydroid-migrate
+./run
+
+#Method 2 (Using termux)
+Install termux.. then run:
+pkg install python libjpeg-turbo libcrypt ndk-sysroot clang git
+LDFLAGS="-L/system/lib/" CFLAGS="-I/data/data/com.termux/files/usr/include/" pip install wheel pillow
+#git clone https://gitlab.com/koala-lms/lms.git 
+git clone https://github.com/dbcaturra/miescuela-koala.git
+cd miescuela-koala
+./build
+

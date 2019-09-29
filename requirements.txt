@@ -1,0 +1,6 @@
+django>=2.2
+django-bootstrap-static
+django-koalalms-learning
+django-koalalms-accounts
+#For django_quiz
+django-model-utils

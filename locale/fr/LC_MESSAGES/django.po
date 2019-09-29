@@ -1,0 +1,148 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# Guillaume Bernard <guillaume-bernard@koala-lms.org>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: lms\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-06 11:24+0200\n"
+"PO-Revision-Date: 2019-08-07 14:07+0200\n"
+"Last-Translator: Guillaume Bernard <associations@guillaume-bernard.fr>\n"
+"Language-Team: Français\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.2.3\n"
+
+#: lms/settings.py:122
+msgid "French"
+msgstr "Français"
+
+#: lms/settings.py:123
+msgid "English"
+msgstr "Anglais"
+
+#: templates/403.html:7
+msgid "You are not authorized to see this page (Error n°403)."
+msgstr "Vous n’êtes pas autorisé à consulter cette page (Erreur n°403)."
+
+#: templates/403.html:10
+msgid "Oops, you do not have enough rights to see this page."
+msgstr "Oups, vous n’avez pas les droits suffisants pour consulter cette page."
+
+#: templates/403.html:15 templates/404.html:16 templates/500.html:15
+msgid "Go back to previous page."
+msgstr "Retourner à la page précédente."
+
+#: templates/404.html:7
+msgid "The requested page was not found (Error n°404)."
+msgstr "La page demandée n’a pas été trouvée (Erreur n°404)."
+
+#: templates/404.html:10
+msgid "Oops, the page you requested was not found on this server."
+msgstr ""
+"Oups, la page que vous avez demandé n’as pas été trouvée sur le serveur."
+
+#: templates/404.html:11
+msgid "It may be because the page was moved or is no longer available."
+msgstr ""
+"Cela peut être parce que la page a été déplacée ou n’est plus disponible."
+
+#: templates/500.html:7
+msgid "Something went wrong (Error n°500)."
+msgstr "Quelque chose s’est mal passé (Erreur n°500)."
+
+#: templates/500.html:10
+msgid "Oops, something went wrong and it seems page you request crashed."
+msgstr ""
+"Oups, quelque chose s’est mal passé et il semble que la page que vous avez "
+"demandé a crashé."
+
+#: templates/base.html:44
+msgid "Versions used"
+msgstr "Versions utilisées"
+
+#: templates/base.html:47
+msgid "Koala LMS"
+msgstr "Koala LMS"
+
+#: templates/base.html:50
+#, python-format
+msgid "<strong>Koala</strong> n°%(version)s"
+msgstr "<strong>Koala</strong> n°%(version)s"
+
+#: templates/base.html:53
+msgid "Koala LMS applications"
+msgstr "Applications Koala LMS"
+
+#: templates/base.html:57
+#, python-format
+msgid "<strong>django-koalalms-learning</strong> n°%(version)s"
+msgstr "<strong>django-koalalms-learning</strong> n°%(version)s"
+
+#: templates/base.html:63
+#, python-format
+msgid "<strong>django-koalalms-accounts</strong> n°%(version)s"
+msgstr "<strong>django-koalalms-accounts</strong> n°%(version)s"
+
+#: templates/base.html:70
+msgid "Report an issue"
+msgstr "Signaler une erreur"
+
+#: templates/base.html:74
+msgid ""
+"When running preview, you will surely encounter bugs and other issues. This "
+"is normal and helps us to enhance Koala-LMS. Please, report any error you "
+"find."
+msgstr ""
+"Lorsque vous exécutez l’aperçu technologique, vous rencontrerez forcément "
+"des bogues et d’autres problèmes. C’est normal et cela nous aide à améliorer "
+"Koala-LMS. S’il vous plaît, rapportez toutes les erreurs que vous trouvez."
+
+#: templates/base.html:75
+msgid "Technical preview"
+msgstr "Aperçu technologique"
+
+#: templates/base.html:89
+msgid ""
+"You are running a preview of Koala LMS. You have been automatically logged "
+"in as a demonstration user that owns courses, activities and resources to "
+"let you discover how Koala LMS works."
+msgstr ""
+"Vous exécutez une pré-version de Koala-LMS. Vous avez été connecté "
+"automatiquement en tant qu’utilisateur de démonstration possédant des cours, "
+"activités et ressources pour vous permettre de découvrir comment Koala-LMS "
+"fonctionne."
+
+#: templates/home.html:11
+msgid ""
+"This image “Closed book”, is a work called “Closed Book Icon” by Boca Tutor, "
+"available on Wikimedia Commons under CC-BY-SA 3.0."
+msgstr ""
+"Cette image « Livre fermé » est un travail appelé « Closed Book Icon » par "
+"Boca Tutor, disponible sur Wikimédia Commons sous la licence CC-BY-SA 3.0."
+
+#: templates/home.html:18
+msgid "Learning application"
+msgstr "Application d’apprentissage"
+
+#: templates/home.html:20
+msgid ""
+"Learn courses you subscribed in and write your own courses, activities and "
+"educational resources."
+msgstr ""
+"Apprenez les cours auxquels vous vous êtes inscrit et écriez vos propres "
+"cours, activités et ressources pédagogiques."
+
+#: templates/home.html:22
+msgid "Go to learning application"
+msgstr "Aller à l’application d’apprentissage"
+
+#~ msgid "Learning"
+#~ msgstr "Apprendre"
