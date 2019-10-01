@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import logging
 import os
 
+FILE_SIZE_LIMIT_IN_KILOBYTES=51200
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -123,10 +125,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 gettext = lambda x: x
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'es'
 LANGUAGES = (
     ('fr', gettext('French')),
     ('en', gettext('English')),
+    ('es', gettext('Spanish')),
 )
 
 TIME_ZONE = 'UTC'

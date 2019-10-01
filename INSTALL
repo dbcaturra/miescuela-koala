@@ -22,7 +22,24 @@ Install termux.. then run:
 pkg install python libjpeg-turbo libcrypt ndk-sysroot clang git
 LDFLAGS="-L/system/lib/" CFLAGS="-I/data/data/com.termux/files/usr/include/" pip install wheel pillow
 #git clone https://gitlab.com/koala-lms/lms.git 
-git clone https://github.com/dbcaturra/miescuela-koala.git
+git -C ~/storage/shared/ clone https://github.com/dbcaturra/miescuela-koala.git
 cd miescuela-koala
 ./build
 
+#install django_quiz
+#requeriments
+pip install django-model-utils 
+#git -C ~/storage/shared/ clone https://github.com/tomwalker/django_quiz.git
+#cp ~/storage/shared/django_quiz/quiz multichoice true_false essay ~/storage/shared/miescuela-koala/
+
+Run pip install -r requirements.txt. Run python setup.py install
+
+Add 'quiz', 'multichoice', 'true_false', 'essay' to your INSTALLED_APPS setting.
+git -C ~/storage/shared/ clon
+
+#install media server
+pkg install ffmpeg
+pkg install nodejs
+git -C ~/storage/shared/ clone https://github.com/illuspas/Node-Media-Server
+npm i
+#node app.js
