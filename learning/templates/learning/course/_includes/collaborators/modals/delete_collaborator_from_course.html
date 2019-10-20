@@ -1,0 +1,25 @@
+{% extends 'learning/_includes/modals/base.html' %}
+{% load i18n %}
+
+{% block modal_id %}delete-collaborator-{{ course_collaborator.collaborator.id }}-from-{{ course.slug }}{% endblock %}
+{% block modal_aria_label %}delete-collaborator-{{ course_collaborator.collaborator.id }}-from-{{ course.slug }}{% endblock %}
+
+{% block modal_header %}
+  <h5 class="modal-title">{% blocktrans with name=course.name collaborator=collaborator %}Remove “{{ collaborator }}” from collaborators on “{{ name }}”{% endblocktrans %}</h5>
+{% endblock %}
+
+{% block modal_body %}
+  <div class="container-fluid">
+    <h6>{% blocktrans with course=course collaborator=collaborator %}{{ collaborator }} works with you on the course “{{ course }}”.{% endblocktrans %}</h6>
+    <p>{% trans "By removing it from your collaborators, the user will lose its rights on the course and will no longer be able to help you writing this course." %}</p>
+  </div>
+{% endblock %}
+
+{% block modal_footer %}
+  <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i> {% trans "Close" %}</button>
+  <form action="{% url "learning:course/detail/collaborator/delete" slug=course.slug %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="user_pk" value="{{ collaborator.id }}">
+    <button type="submit" class="btn btn-danger"><i class="fa fa-sm fa-trash-alt"></i> {% trans "Remove this collaborator" %}</button>
+  </form>
+{% endblock %}

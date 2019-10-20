@@ -1,0 +1,76 @@
+{% load learning i18n countries %}
+
+<div id="activity-block-for-{{ activity.slug }}" class="col-lg-4 col-md-6 col-sm-6 col-12 p-2">
+  <div class="card w-100 h-100">
+    <div class="card-body">
+
+      {# The activity can be added to a course: then add a plus button #}
+      {% if add %}
+        <div class="clearfix">
+          <h5 class="card-title float-left">{{ activity.name }}</h5>
+          <div class="float-right">
+            <form method="post">
+              {% csrf_token %}
+              <input name="activity" value="{{ activity.id }}" type="hidden">
+              <button type="submit" class="btn btn-outline-success btn-sm"><i class="fa fa-plus"></i></button>
+            </form>
+          </div>
+        </div>
+      {% else %}
+        <h5 class="card-title">{{ activity.name }}</h5>
+      {% endif %}
+
+      <hr>
+
+      {# Activity useful badges: reuse and access #}
+      <div class="clearfix">
+        <div class="float-left">
+          <span class="badge badge-{{ activity.reuse|get_activity_reuse_badge_type }} p-2"
+                data-toggle="tooltip" data-placement="top"
+                title="{{ activity.reuse|get_activity_reuse_badge_title }}">
+            {{ activity.get_reuse_display }}
+          </span>
+        </div>
+        <div class="ml-2 float-right">
+          <span class="badge badge-{{ activity.access|get_activity_access_badge_type }} p-2"
+                data-toggle="tooltip" data-placement="top"
+                title="{{ activity.access|get_activity_access_badge_title }}">
+            {{ activity.get_access_display }}
+          </span>
+        </div>
+      </div>
+
+      <hr>
+
+      {# Activity author and language #}
+      <div class="clearfix">
+        <h6 class="mb-2 text-muted float-left">{% trans "By:" %} {{ activity.author }}</h6>
+        <div class="float-right">
+          {% get_country activity.language as country %}
+          <i class="{{ country.flag_css }} align-middle"></i>
+        </div>
+      </div>
+
+      {# Activity tags and description. #}
+      <div class="card-text">
+        {% include "learning/_includes/object_tags_line.html" with object=activity %}
+        <hr>
+        <div class="d-none d-md-block d-lg-block card-model-description">
+          {{ activity.description | truncatechars:600 | render_markdown | safe | truncatewords_html:30 }}
+        </div>
+      </div>
+
+    </div> <!-- card-body -->
+
+
+    <div class="card-footer bg-white">
+      <div class="float-left">
+        {% include "learning/resource/_includes/nb_resources_badge.html" with activity=activity %}
+      </div>
+      <a href="{% url 'learning:activity/detail' slug=activity.slug %}" class="card-link float-right">
+        {% trans "See more" %}
+      </a>
+    </div>
+
+  </div>
+</div>

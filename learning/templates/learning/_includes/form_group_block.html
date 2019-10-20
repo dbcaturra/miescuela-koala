@@ -1,0 +1,21 @@
+<div class="form-group">
+  {{ field.label_tag }}
+  <div class="input-group">
+    {% if icon %}
+      <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fas {{ icon }}"></i></span>
+      </div>
+    {% endif %}
+    {{ field }}
+    {% if field.errors %}
+      <div class="invalid-feedback">
+        {{ field.errors }}
+      </div>
+    {% endif %}
+  </div>
+  {% if field.help_text %}
+    <small id="{{ field.name }}_help_block" class="form-text text-muted">
+      {{ field.help_text }}
+    </small>
+  {% endif %}
+</div>

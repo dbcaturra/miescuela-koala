@@ -1,0 +1,48 @@
+
+$sidebar_width: 15%;
+
+aside#learning-sidebar {
+  min-height: 100vh;
+  max-width: $sidebar_width;
+
+  h5 {
+    margin: 1rem 2rem 1rem 2rem !important;
+  }
+
+  span.sidebar-item-title {
+    margin-left: 1rem;
+  }
+}
+
+@media (min-width: 992px) {
+  aside#learning-sidebar {
+    min-width: $sidebar_width;
+
+    div.tooltip {
+      display: none;
+    }
+  }
+}
+
+
+@media (max-width: 992px) {
+  aside#learning-sidebar {
+    min-width: 5%;
+
+    h5.sidebar-title {
+      display: none;
+    }
+
+    a.list-group-item {
+      span.sidebar-item-title {
+        display: none;
+      }
+    }
+
+    svg {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{% extends 'learning/_includes/modals/base.html' %}
+{% load i18n %}
+
+{% block modal_id %}add-activity-on-course-{{ course.slug }}{% endblock %}
+{% block modal_aria_label %}add-activity-on-course-{{ course.slug }}{% endblock %}
+
+{% block modal_header %}
+  <h5 class="modal-title">{% blocktrans with name=course.name %}Add a new activity on course “{{ name }}”{% endblocktrans %}</h5>
+{% endblock %}
+
+{% block modal_body %}
+  <div class="container-fluid">
+
+    <h6>{% trans "Search for an activity to reuse" %}</h6>
+    <p>{% trans "Explore the activity index and find the activity that matches the most your needs." %}</p>
+    <div class="text-center">
+      <a href="{% url 'learning:course/detail/activity/attach' slug=course.slug %}"
+         class="btn btn-outline-primary">
+        <i class="fa fa-search"></i> {% trans "Look for an existing activity" %}
+      </a>
+    </div>
+
+    <hr>
+
+    <h6>{% trans "Create a brand new activity" %}</h6>
+    <p>{% trans "The following step allows you to create a brand new activity. The activity will be linked to this course automatically." %}</p>
+    <div class="text-center">
+      <a href="{% url 'learning:course/detail/activity/add' slug=course.slug %}" class="btn btn-outline-secondary">
+        <i class="fa fa-plus"></i> {% trans "Create an activity" %}
+      </a>
+    </div>
+
+  </div>
+{% endblock %}
+
+{% block modal_footer %}
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">
+    {% trans "Close" %}
+  </button>
+{% endblock %}

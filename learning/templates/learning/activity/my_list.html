@@ -1,0 +1,57 @@
+{% extends "learning/activity/base.html" %}
+{% load i18n learning django_bootstrap_breadcrumbs %}
+
+{% block title %}{{ block.super }} − {% trans "My activities" %}{% endblock %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  {% breadcrumb "My activities" "learning:activity/my" activity.slug %}
+{% endblock %}
+
+{% block learning_content %}
+
+  <form method="get">
+    <div class="form-row">
+      <div class="col">
+        {{ form.query }}
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+      </div>
+      <div class="col-auto">
+        <a href="{% url "learning:activity/add" %}" class="float-right btn btn-outline-success">
+          <i class="fa fa-plus"></i> {% trans "Create a new activity" %}
+        </a>
+      </div>
+    </div>
+  </form>
+
+  {# The result of the query: gives activities to display #}
+  {% if search_has_obj %}
+    <hr>
+    <div class="row">
+      {% for activity in search_page_obj %}
+        {% include "learning/activity/_includes/activity_block.html" with activity=activity %}
+      {% endfor %}
+    </div>
+    {% include 'learning/_includes/paginator_buttons.html' with current_page=search_page_obj prefix='search' nb_per_page=search_nb_per_page %}
+  {% endif %}
+
+  {# The activities owned by the connected user #}
+  {% if activities_has_obj %}
+    <hr>
+    <h2>{% trans "My activities" %}</h2>
+    <div class="row">
+      {% for activity in activities_page_obj %}
+        {% include "learning/activity/_includes/activity_block.html" with activity=activity %}
+      {% endfor %}
+    </div>
+    {% include 'learning/_includes/paginator_buttons.html' with current_page=activities_page_obj prefix='activities' nb_per_page=activities_nb_per_page %}
+  {% else %}
+    <hr>
+    <div class="alert alert-info" role="alert">
+      {% trans "You did not create an activity yet. Activities are reusable and shareable elements that aggregate educational resources. Go on and create an activity!" %}
+    </div>
+  {% endif %}
+
+{% endblock %}

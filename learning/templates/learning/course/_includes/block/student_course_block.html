@@ -1,0 +1,12 @@
+{% extends "learning/course/_includes/block/course_block_base.html" %}
+{% load i18n countries %}
+
+{% block course_block_header %}
+  <div class="clearfix">
+    <h6 class="mb-2 text-muted float-left">{% trans "By:" %} {{ course.author }}</h6>
+    <div class="float-right">
+      {% get_country course.language as country %}
+      <i class="{{ country.flag_css }} align-middle"></i>
+    </div>
+  </div>
+{% endblock %}

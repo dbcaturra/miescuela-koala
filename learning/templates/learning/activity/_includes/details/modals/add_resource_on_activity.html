@@ -1,0 +1,40 @@
+{% extends 'learning/_includes/modals/base.html' %}
+{% load i18n %}
+
+{% block modal_id %}add-resource-on-activity-{{ activity.slug }}{% endblock %}
+{% block modal_aria_label %}add-resource-on-activity-{{ activity.slug }}{% endblock %}
+
+{% block modal_header %}
+  <h5 class="modal-title">{% blocktrans with name=activity.name %}Add a new resource on activity “{{ name }}”{% endblocktrans %}</h5>
+{% endblock %}
+
+{% block modal_body %}
+  <div class="container-fluid">
+
+    <h6>{% trans "Search for a resource to reuse" %}</h6>
+    <p>{% trans "Explore the resource index and find the resource that matches the most your needs." %}</p>
+    <div class="text-center">
+      <a href="{% url "learning:activity/detail/resource/attach" slug=activity.slug %}"
+         class="btn btn-outline-primary">
+        <i class="fa fa-search"></i> {% trans "Look for an existing resource" %}
+      </a>
+    </div>
+
+    <hr>
+
+    <h6>{% trans "Create a brand new resource" %}</h6>
+    <p>{% trans "The following step allows you to create a brand new resource. The resource will be linked to this activity automatically." %}</p>
+    <div class="text-center">
+      <a href="{% url 'learning:activity/detail/resource/add' slug=activity.slug %}" class="btn btn-outline-secondary">
+        <i class="fa fa-plus"></i> {% trans "Create a resource" %}
+      </a>
+    </div>
+
+  </div>
+{% endblock %}
+
+{% block modal_footer %}
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">
+    {% trans "Close" %}
+  </button>
+{% endblock %}

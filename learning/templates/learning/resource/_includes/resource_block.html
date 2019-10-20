@@ -1,0 +1,111 @@
+{% load i18n learning countries %}
+
+<div id="resource-block-for-{{ resource.slug }}" class="col-lg-4 col-md-6 col-sm-6 col-12 p-2">
+  <div class="card w-100 h-100">
+    <div class="card-body"> <!-- Card body begins -->
+
+      <div class="clearfix">
+        {# The course identity: icon and name #}
+        <h5 class="card-title float-left">
+          <i class="fa {{ resource.type|get_resource_type_icon }}"></i> {{ resource.name }}
+        </h5>
+
+        {% if add %}
+          {# The resource can be linked to an activity. In this case, display a button to attach it to the activity #}
+          <div class="float-right">
+            <form method="post" action="{% url 'learning:activity/detail/resource/attach' activity.slug %}" id="link-resource-to-activity-form">
+              {% csrf_token %}
+              <input name="resource" value="{{ resource.id }}" type="hidden">
+              <button type="submit" class="btn btn-outline-success btn-sm"
+                      data-toggle="tooltip" data-placement="top" title="{% trans "Attach the resource to the activity." %}">
+                <i class="fa fa-plus"></i>
+              </button>
+            </form>
+          </div>
+        {% elif unlink %}
+          {# The resource can be unlink from an activity. In this case, display a button to unlink the resource #}
+          <div class="float-right">
+            <form method="post" action="{% url 'learning:activity/detail/resource/unlink' activity.slug %}" id="unlink-resource-from-activity-form">
+              {% csrf_token %}
+              <input name="resource" value="{{ resource.id }}" type="hidden">
+              <button type="submit" class="btn btn-outline-warning btn-sm"
+                      data-toggle="tooltip" data-placement="top" title="{% trans "Unlink the resource from the activity." %}">
+                <i class="fa fa-unlink"></i>
+              </button>
+            </form>
+          </div>
+        {% endif %}
+      </div>
+
+      <hr>
+
+      {# The resource badges to display necessary information: access and duration #}
+      <div class="clearfix">
+        {# Access attribute is put on the left, this is not relevant for a student #}
+        {% if not as_student %}
+          <div class="float-left">
+          <span class="badge p-2 badge-{{ resource.access|get_resource_access_badge_type }}"
+                data-toggle="tooltip" data-placement="top" title="{{ resource.access|get_resource_access_badge_title }}">
+            {{ resource.get_access_display }}
+          </span>
+          </div>
+        {% endif %}
+        {# Duration attribute is put on the right #}
+        <div class="float-right">
+          <span class="badge p-2 badge-{{ resource.duration|get_resource_duration_badge_type }}"
+                data-toggle="tooltip" data-placement="top" title="{{ resource.duration|get_resource_duration_badge_title }}">
+            {{ resource.get_duration_display }}
+          </span>
+        </div>
+      </div>
+
+      <hr>
+
+      {# The resource author and main language #}
+      <div class="clearfix">
+        {# Author #}
+        <h6 class="mb-2 text-muted float-left">
+          {% blocktrans with author=resource.author %}By: {{ author }}{% endblocktrans %}
+        </h6>
+        {# Country #}
+        <div class="float-right">
+          {% get_country resource.language as country %}
+          <i class="{{ country.flag_css }} align-middle"></i>
+        </div>
+      </div>
+
+      {# The course tags #}
+      <div class="card-text d-none d-md-block">
+        {% include "learning/_includes/object_tags_line.html" with object=resource %}
+      </div>
+
+    </div> <!-- Card body ends -->
+
+    <div class="card-footer bg-white"> <!-- Footer begins -->
+      <div class="clearfix">
+        {# Resource update date #}
+        <p class="float-left text-muted d-none d-md-block" >
+          {% blocktrans with date=resource.updated|date:'j N Y' %}Updated {{ date }}.{% endblocktrans %}
+        </p>
+        {% get_object_perms resource user as resource_perms %}
+        {% if "view_resource" in resource_perms %}
+          {% if linked_course %}
+            {# In case the resource is displayed as part of a course, it is linked to it and to the corresponding activity. #}
+            <a href="{% url 'learning:course/detail/activities/resource' slug=linked_course.slug activity_slug=linked_activity.slug resource_slug=resource.slug %}"
+               class="card-link float-right">
+          {% elif linked_activity %}
+            {# If not, it may be part of an activity, so it is linked to the corresponding activity. #}
+            <a href="{% url 'learning:activity/resource/detail' slug=linked_activity.slug resource_slug=resource.slug %}" class="card-link float-right">
+          {% else %}
+            {# Otherwise, it can be displayed as a standard resource detail page #}
+            <a href="{% url 'learning:resource/detail' slug=resource.slug %}" class="card-link float-right">
+          {% endif %}
+        {% trans "See more" %}
+        </a>
+        {% else %}
+          <p class="card-link float-right">{% trans "Restricted access" %}</p>
+        {% endif %}
+      </div>
+    </div> <!-- Footer ends -->
+  </div>
+</div>

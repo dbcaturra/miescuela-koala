@@ -1,0 +1,69 @@
+{% extends "learning/course/_includes/block/course_block_base.html" %}
+{% load i18n learning countries %}
+
+{% block course_block_header %}
+
+  {% get_object_perms course user as course_perms %}
+
+  {# The course name and its status and access badges #}
+  <div class="clearfix">
+    <div class="float-left">
+      {% get_course_collaborator_object course user as course_collaborator %}
+      {% if user == course.author %}
+        <span class="badge badge-{{ "OWNER"|get_course_role_badge_type }} p-2"
+              data-toggle="tooltip" data-placement="top"
+              title="{{ "OWNER"|get_course_role_badge_title }}"
+        >{% trans "I write this course." %}</span>
+      {% elif course_collaborator %}
+        <span class="badge badge-{{ course_collaborator.role|get_course_role_badge_type }} p-2"
+              data-toggle="tooltip" data-placement="top"
+              title="{{ course_collaborator.role|get_course_role_badge_title }}"
+        >{{ course_collaborator.get_role_display }}</span>
+      {% else %}
+        {% if user in course.students.all %}
+          <span class="badge badge-primary p-2" data-toggle="tooltip" data-placement="top"
+                title="{% trans "You registered to this course. You can unregister if registration is enabled by the course owner." %}">
+            {% trans "Registered" %}
+          </span>
+        {% elif course.registration_enabled %}
+          <span class="badge badge-primary p-2">{% trans "Registration enabled" %}</span>
+        {% endif %}
+      {% endif %}
+
+      {% if not "view_course" in course_perms %}
+        <span id="restricted-course-{{ course.id }}"
+              class="badge badge-danger p-2"
+              data-toggle="tooltip" data-placement="top"
+              title="{% trans "You do not have the permission to view this course" %}"
+        >{% trans "Restricted access" %}</span>
+      {% endif %}
+    </div>
+    <div class="ml-2 float-right">
+      <span class="badge badge-{{ course.access|get_course_access_badge_type }} p-2"
+            data-toggle="tooltip" data-placement="top"
+            title="{{ course.access|get_course_access_badge_title }}"
+      >{{ course.get_access_display }}</span>
+    </div>
+  </div>
+
+  <hr>
+
+  {% if not user == course.author %}
+    <div class="clearfix">
+      <h6 class="mb-2 text-muted float-left">{% trans "By:" %} {{ course.author }}</h6>
+      <div class="float-right">
+        {% get_country course.language as country %}
+        <i class="{{ country.flag_css }} align-middle"></i>
+      </div>
+    </div>
+  {% endif %}
+
+{% endblock %}
+
+{% block course_block_content %}
+  <hr class="d-none d-lg-block">
+  <div class="d-none d-lg-block card-model-description">
+    {{ course.description | truncatechars:600 | render_markdown | safe | truncatewords_html:30 }}
+  </div>
+{% endblock %}
+

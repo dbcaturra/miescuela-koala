@@ -1,0 +1,53 @@
+{% load i18n learning django_bootstrap_breadcrumbs %}
+{% get_object_perms resource user as resource_perms %}
+
+<div class="clearfix"> <!-- Resource header begins -->
+
+  {# Resource title and permalink #}
+  <h3 class="float-left mb-0">
+    <a href="{% url "learning:resource/detail" slug=resource.slug %}" class="mr-2 btn"
+       data-toggle="tooltip" data-placement="top" title="{% trans "Permalink to the resource." %}">
+      <i class="fa fa-link"></i>
+    </a>
+    <i class="fa {{ resource.type|get_resource_type_icon }}"></i> {{ resource.name }}
+  </h3>
+
+  {# Resource management buttons #}
+  <div class="float-right">
+    {% if "change_resource" in resource_perms %}
+      {# Change/update resource button #}
+      <a id="btn-edit-resource" href="{% url 'learning:resource/update' slug=resource.slug %}" class="btn btn-outline-primary">
+        <i class="fa fa-edit"></i> {% trans "Edit" %}
+      </a>
+    {% endif %}
+    {% if "delete_resource" in resource_perms %}
+      {# Delete resource button #}
+      <a id="btn-delete-resource" href="{% url 'learning:resource/delete' slug=resource.slug %}" class="btn btn-outline-danger">
+        <i class="fa fa-trash"></i>
+      </a>
+    {% endif %}
+  </div>
+</div> <!-- Resource header ends -->
+
+<hr>
+{% include "learning/resource/_includes/details/status_line.html" with resource=resource %}
+<hr>
+{% include "learning/_includes/object_detail_tags_and_country_line.html" with object=resource %}
+<hr>
+
+
+<div id="resource-description" class="p-3 model-description">
+  {# The media file which may be attached to the resource #}
+  {% if resource.media %}
+    <div id="resource-media" class="media-description p-2">
+      <div class="float-right">
+        <a href="{{ resource.media.url }}" class="btn btn-info" target="_blank"><i class="fa fa-eye"></i> {% trans "View the file" %} </a>
+        <a href="{{ resource.media.url }}" class="btn btn-primary" download=""
+           data-toggle="tooltip" data-placement="top" title="{{ resource.media.name }} ({{ resource.media.size|filesizeformat }})">
+          <i class="fa fa-download"></i> {% trans "Download" %}
+          ({{ resource.media.size|filesizeformat }})</a>
+      </div>
+    </div>
+  {% endif %}
+  {{ resource.description | render_markdown | safe }}
+</div>

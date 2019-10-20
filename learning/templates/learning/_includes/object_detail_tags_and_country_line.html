@@ -1,0 +1,11 @@
+{% load countries %}
+
+<div class="clearfix">
+  <div id="object-tags" class="float-left">
+    {% include "learning/_includes/object_tags_line.html" %}
+  </div>
+  <div id="object-language" class="float-right">
+    {% get_country object.language as country %}
+    <i class="flag2x {{ country.flag_css }} align-middle d-none d-md-inline-block"></i>
+  </div>
+</div>

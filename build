@@ -1,5 +1,0 @@
-#pkg install python
-git -C ~/storage/shared/lms clone https://gitlab.com/koala-lms/lms.git 
-cd lms
-pip install -r requirements.txt
-termux-setup-storage

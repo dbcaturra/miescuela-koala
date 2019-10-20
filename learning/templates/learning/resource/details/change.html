@@ -1,0 +1,21 @@
+{% extends "learning/resource/detail.html" %}
+{% load i18n django_bootstrap_breadcrumbs %}
+
+{% block title %}{{ block.super }} − {% trans "Change" context "resource, title" %}{% endblock %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  {% breadcrumb "Change" "learning:resource/change" resource.slug %}
+{% endblock %}
+
+{% block learning_content %}
+  <form method="post" enctype="multipart/form-data">
+    <div class="clearfix">
+      <a class="btn btn-outline-info float-left" href="{% url 'learning:resource/detail' slug=resource.slug %}">{% trans "Cancel and get back to resource" %}</a>
+      <button type="submit" class="btn btn-primary float-right">{% trans "Update resource" %}</button>
+    </div>
+    <hr>
+    {% csrf_token %}
+    {% include "learning/resource/_includes/resource_form.html" %}
+  </form>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'learning/_includes/modals/base.html' %}
+{% load i18n learning %}
+
+{% block modal_id %}change-collaborator-{{ course_collaborator.collaborator.id }}-on-{{ course.slug }}{% endblock %}
+{% block modal_aria_label %}change-collaborator-{{ course_collaborator.collaborator.id }}-on-{{ course.slug }}{% endblock %}
+
+{% block modal_header %}
+  <h5 class="modal-title">{% blocktrans with name=course.name collaborator=collaborator %}Change “{{ collaborator }}” on “{{ name }}”{% endblocktrans %}</h5>
+{% endblock %}
+
+{% block modal_body %}
+  <div class="container-fluid">
+    <h6>{% blocktrans with course=course collaborator=collaborator %}{{ collaborator }} works with you on the course “{{ course }}”.{% endblocktrans %}</h6>
+    <form action="{% url "learning:course/detail/collaborator/change" slug=course.slug %}" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="user_pk" value="{{ collaborator.id }}">
+      <div class="form-row">
+        <div class="col">
+          {% get_collaborator_role_form course_collaborator as collaborator_form %}
+          {{ collaborator_form.role }}
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-outline-primary"><i class="fa fa-sm fa-edit"></i> {% trans "Change the role of this collaborator" %}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock %}
+
+{% block modal_footer %}
+  <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i> {% trans "Close" %}</button>
+{% endblock %}

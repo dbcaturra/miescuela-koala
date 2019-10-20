@@ -1,0 +1,17 @@
+{% extends "learning/course/base.html" %}
+{% load i18n django_bootstrap_breadcrumbs %}
+
+{% block title %}{{ block.super }} − {% trans "Add a new course" %}{% endblock %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  {% breadcrumb "Add a new course" "learning:course/add" %}
+{% endblock %}
+
+{% block learning_content %}
+  <form method="post">
+    {% csrf_token %}
+    {% include "learning/course/_includes/course_form.html" %}
+    <button type="submit" class="btn btn-primary float-right">{% trans "Create a new course" %}</button>
+  </form>
+{% endblock %}

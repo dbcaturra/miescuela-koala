@@ -1,0 +1,25 @@
+{% load i18n %}
+
+<li class="nav-item dropdown">
+  {% if user.is_authenticated %}
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+       aria-expanded="false">{% trans "Learning" %}</a>
+  {% else %}
+    <a class="nav-link" href="{% url "learning:index" %}">{% trans "Learning" %}</a>
+  {% endif %}
+
+  {% if user.is_authenticated %}
+    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
+      <a class="dropdown-item" href="{% url 'learning:index' %}">{% trans "Home" %}</a>
+      <div class="dropdown-divider"></div>
+      <h6 class="dropdown-header">{% trans "Studying" %}</h6>
+      <a class="dropdown-item" href="{% url 'learning:course/my' %}">{% trans "My courses" %}</a>
+      <a class="dropdown-item" href="{% url 'learning:course/search' %}">{% trans "Search for a course" %}</a>
+      <div class="dropdown-divider"></div>
+      <h6 class="dropdown-header">{% trans "Teaching" %}</h6>
+      <a class="dropdown-item" href="{% url 'learning:course/teaching' %}">{% trans "My courses" %}</a>
+      <a class="dropdown-item" href="{% url 'learning:activity/my' %}">{% trans "My activities" %}</a>
+      <a class="dropdown-item" href="{% url 'learning:resource/my' %}">{% trans "My resources" %}</a>
+    </div>
+  {% endif %}
+</li>

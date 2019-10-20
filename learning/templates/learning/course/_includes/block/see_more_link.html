@@ -1,0 +1,9 @@
+{% load i18n learning %}
+
+{% get_object_perms course user as course_perms %}
+{% if "view_course" in course_perms %}
+  <a href="{% url 'learning:course/detail' slug=course.slug %}"
+     class="card-link float-right">
+    {% trans "See more" %}
+  </a>
+{% endif %}

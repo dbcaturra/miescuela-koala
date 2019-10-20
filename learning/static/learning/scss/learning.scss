@@ -1,0 +1,71 @@
+@import "course.scss";
+@import "activity.scss";
+@import "sidebar.scss";
+
+div.model-description {
+  border-radius: 0.25rem;
+  background-color: #f7f7f7;
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}
+
+div.card {
+  div.card-model-description {
+    max-height: 7rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  div.card-footer {
+    font-size: .9rem;
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
+
+div.form-group > small.text-muted > ul {
+  padding-left: 1rem;
+}
+
+.tab-pane {
+  min-height: 18rem;
+  max-height: 18rem;
+  height: 18rem;
+  margin-bottom: 1rem;
+
+  > {
+    div.markdownx-preview {
+      height: 100% !important;
+      width: 100%;
+      overflow: scroll;
+      resize: none;
+    }
+
+    textarea {
+      height: 100% !important;
+      width: 100%;
+      overflow: scroll;
+      resize: none;
+      font-family: "Ubuntu Mono derivative Powerline", monospace;
+    }
+  }
+}

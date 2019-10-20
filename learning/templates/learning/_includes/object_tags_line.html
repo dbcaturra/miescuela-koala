@@ -1,0 +1,10 @@
+{% load i18n %}
+
+<i class="fas fa-tags"></i>
+{% if object.tags.all %}
+  {% for tag in object.tags.all %}
+    <span class="badge badge-pill badge-primary">{{ tag }}</span>
+  {% endfor %}
+{% else %}
+  {% trans "This object does not have any tag yet." %}
+{% endif %}

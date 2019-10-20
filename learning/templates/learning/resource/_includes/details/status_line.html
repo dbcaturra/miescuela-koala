@@ -1,0 +1,38 @@
+{% load i18n learning %}
+
+<div class="clearfix">
+
+  {# On the left: attribute badges that define resource properties #}
+  <div class="float-md-left float-sm-left">
+    {# The resource access attribute #}
+    <span id="access-badge" class="badge badge-{{ resource.access|get_resource_access_badge_type }} p-2"
+          data-toggle="tooltip" data-placement="top" title="{{ resource.access|get_resource_access_badge_title }}">
+      {% blocktrans with access=resource.get_access_display %}“{{ access }}” access{% endblocktrans %}
+    </span>
+
+    {# The resource reuse attribute #}
+    <span id="reuse-badge" class="badge badge-{{ resource.reuse|get_resource_reuse_badge_type }} p-2"
+          data-toggle="tooltip" data-placement="top" title="{{ resource.reuse|get_resource_reuse_badge_title }}">
+      {{ resource.get_reuse_display }}
+    </span>
+
+    {# The resource licence attribute #}
+    <span id="licence-badge" class="badge badge-{{ resource.licence|get_resource_licence_badge_type }} p-2 d-none d-lg-inline-block"
+          data-toggle="tooltip" data-placement="top" title="{{ resource.licence|get_resource_licence_badge_title }}">
+      {{ resource.get_licence_display }}
+    </span>
+
+    {# The resource duration attribute #}
+    <span id="duration-badge" class="badge badge-{{ resource.duration|get_resource_duration_badge_type }} p-2 d-none d-lg-inline-block"
+          data-toggle="tooltip" data-placement="top" title="{{ resource.duration|get_resource_duration_badge_title }}">
+      {{ resource.get_duration_display }}
+    </span>
+  </div>
+
+  {# On the right, author of the resource #}
+  <div class="float-md-right float-sm-right">
+      <span id="author-badge" class="badge badge-info p-2">
+        {% blocktrans with author=resource.author %}Writen by {{ author }}.{% endblocktrans %}
+      </span>
+  </div>
+</div>

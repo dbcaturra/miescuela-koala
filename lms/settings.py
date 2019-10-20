@@ -127,8 +127,6 @@ AUTH_PASSWORD_VALIDATORS = [
 gettext = lambda x: x
 LANGUAGE_CODE = 'es'
 LANGUAGES = (
-    ('fr', gettext('French')),
-    ('en', gettext('English')),
     ('es', gettext('Spanish')),
 )
 

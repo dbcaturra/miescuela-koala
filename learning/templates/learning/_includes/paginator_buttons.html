@@ -1,0 +1,54 @@
+{% load learning %}
+
+{% if current_page.has_previous or current_page.has_next %}
+  <ul class="pagination justify-content-center">
+    {% with params=request.GET.urlencode %}
+
+      {% if current_page.has_previous %}
+        <li id="previous-page-item" class="page-item">
+          {% if prefix %}
+            <a class="page-link" href="{% relative_url current_page.previous_page_number prefix|add:'_page' params %}">
+              {{ current_page.previous_page_number }}
+            </a>
+          {% else %}
+            <a class="page-link" href="{% relative_url current_page.previous_page_number 'page' params %}">
+              {{ current_page.previous_page_number }}
+            </a>
+          {% endif %}
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+      {% endif %}
+
+      <li id="current-page-item" class="page-item active">
+        <a class="page-link" href="">
+          {{ current_page.number }}
+        </a>
+      </li>
+
+      {% if current_page.has_next %}
+        <li id="next-page-item" class="page-item">
+          {% if prefix %}
+            <a class="page-link" href="{% relative_url current_page.next_page_number prefix|add:'_page' params %}">
+              {{ current_page.next_page_number }}
+            </a>
+          {% else %}
+            <a class="page-link" href="{% relative_url current_page.next_page_number 'page' params %}">
+              {{ current_page.next_page_number }}
+            </a>
+          {% endif %}
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      {% endif %}
+    {% endwith %}
+  </ul>
+{% endif %}

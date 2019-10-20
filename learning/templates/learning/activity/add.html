@@ -1,0 +1,17 @@
+{% extends "learning/base.html" %}
+{% load i18n django_bootstrap_breadcrumbs %}
+
+{% block title %}{{ block.super }} − {% trans "Create a new activity" %}{% endblock %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  {% breadcrumb "Create a new activity" "learning:activity/add" %}
+{% endblock %}
+
+{% block learning_content %}
+  <form method="post">
+    {% csrf_token %}
+    {% include 'learning/activity/_includes/activity_form.html' with form=form %}
+    <button type="submit" class="btn btn-primary float-right">{% trans "Update activity" %}</button>
+  </form>
+{% endblock %}

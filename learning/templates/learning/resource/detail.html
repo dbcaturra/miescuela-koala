@@ -1,0 +1,57 @@
+{% extends "learning/resource/base.html" %}
+{% load i18n learning django_bootstrap_breadcrumbs %}
+
+{% block title %}
+  {{ block.super }} −
+  {% blocktrans with name=resource.name %}Resource “{{ name }}”{% endblocktrans %}
+{% endblock %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  {% breadcrumb resource.name "learning:resource/detail" resource.slug %}
+{% endblock %}
+
+{% block sidebar %}
+  <aside id="learning-sidebar" class="border-right bg-light">
+    <h5 class="sidebar-title text-center text-muted">{{ resource.name }}</h5>
+    <div class="list-group list-group-flush">
+
+      {# A link to the resource details #}
+      {% with url_name="learning:resource/detail" %}
+        <a id="link-resource-detail" href="{% url url_name slug=resource.slug %}"
+           data-toggle="tooltip" data-placement="right" title="{% trans "Details" %}" data-container="aside#learning-sidebar"
+           class="list-group-item list-group-item-action {% if request.resolver_match.view_name == url_name %}active{% else %}bg-light{% endif %}">
+          <i class="fas fa-info-circle"></i><span class="sidebar-item-title">
+        {% trans "Details" %}</span>
+        </a>
+      {% endwith %}
+
+      {# A link to the resource usage #}
+      {% get_object_perms resource user as resource_perms %}
+      {% if "view_usage_resource" in  resource_perms %}
+        {% with url_name="learning:resource/detail/usage" %}
+          <a id="link-resource-usage" href="{% url url_name slug=resource.slug %}"
+             data-toggle="tooltip" data-placement="right" title="{% trans "Uses" %}" data-container="aside#learning-sidebar"
+             class="list-group-item list-group-item-action {% if request.resolver_match.view_name == url_name %}active{% else %}bg-light{% endif %}">
+            <i class="fas fa-recycle"></i><span class="sidebar-item-title">{% trans "Uses" %}</span></a>
+        {% endwith %}
+      {% endif %}
+
+      {# A linked to the resource similar resources #}
+      {% if "view_similar_resource" in resource_perms %}
+        {% with url_name="learning:resource/detail/similar" %}
+          <a id="link-resource-similar" href="{% url url_name slug=resource.slug %}"
+             data-toggle="tooltip" data-placement="right" title="{% trans "Similar resources" %}" data-container="aside#learning-sidebar"
+             class="list-group-item list-group-item-action {% if request.resolver_match.view_name == url_name %}active{% else %}bg-light{% endif %}">
+            <i class="fas fa-tags"></i><span class="sidebar-item-title">{% trans "Similar resources" %}</span>
+          </a>
+        {% endwith %}
+      {% endif %}
+
+    </div>
+  </aside>
+{% endblock %}
+
+{% block learning_content %}
+  {% include "learning/resource/_includes/details/detail_page.html" with resource=resource %}
+{% endblock %}

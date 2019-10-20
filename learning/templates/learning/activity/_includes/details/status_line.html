@@ -1,0 +1,20 @@
+{% load i18n learning %}
+
+<div class="clearfix">
+  <div class="float-left">
+      <span id="access-badge" class="badge badge-{{ activity.access|get_activity_access_badge_type }} p-2"
+            data-toggle="tooltip" data-placement="top" title="{{ activity.access|get_activity_access_badge_title }}">
+        {% blocktrans with access=activity.get_access_display %}“{{ access }}” access{% endblocktrans %}
+      </span>
+    <span id="access-badge" class="badge badge-{{ activity.reuse|get_activity_reuse_badge_type }} p-2"
+          data-toggle="tooltip" data-placement="top" title="{{ activity.reuse|get_activity_reuse_badge_title }}">
+      {{ activity.get_reuse_display }}
+    </span>
+  </div>
+
+  <div class="float-right">
+      <span id="author-badge" class="badge badge-info p-2">
+        {% blocktrans with author=activity.author %}Writen by {{ author }}.{% endblocktrans %}
+      </span>
+  </div>
+</div>

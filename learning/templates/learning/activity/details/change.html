@@ -1,0 +1,21 @@
+{% extends "learning/activity/detail.html" %}
+{% load i18n django_bootstrap_breadcrumbs %}
+
+{% block title %}{{ block.super }} − {% trans "Change" context "activity, title" %}{% endblock %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  {% breadcrumb "Change" "learning:activity/change" activity.slug %}
+{% endblock %}
+
+{% block learning_content %}
+  <form method="post">
+    <div class="clearfix">
+      <a class="btn btn-outline-info float-left" href="{% url 'learning:activity/detail' slug=activity.slug %}">{% trans "Cancel and get back to activity" %}</a>
+      <button type="submit" class="btn btn-primary float-right">{% trans "Update activity" %}</button>
+    </div>
+    <hr>
+    {% csrf_token %}
+    {% include "learning/activity/_includes/activity_form.html" %}
+  </form>
+{% endblock %}
