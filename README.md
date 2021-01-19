@@ -1,10 +1,6 @@
 ## :school: Miescuela-koala
 
-El proyecto miescuela-koala es un aplicación web que se ejecuta localmente
-en su dispositivo android y que le permite gestionar varios procesos de enseñanza
-aprendizaje de sus estudiantes en las zonas rurales donde la conectividad a internet
-y el suministro de energia electrica presentan constantes limitaciones tales como: 
-interrupciones de servicio y baja cobertura.
+El proyecto miescuela-koala es un uso creativo de koala-lms.
 
 ## Opensource project
 Miescuela-koala use koala-lms (https://www.koala-lms.org/) and django_quiz (https://github.com/tomwalker/django_quiz).
